@@ -80,8 +80,25 @@ jobs:
 ---
 
 ## 📸 Captura de pruebas exitosas
+![Captura de pantalla 2025-06-18 223832](https://github.com/user-attachments/assets/f33831d0-4161-4894-99e1-041ef8f89190)
+![Captura de pantalla 2025-06-18 223801](https://github.com/user-attachments/assets/8fc35fd7-00be-444d-b56c-fd43bf0f285e)
+![Captura de pantalla 2025-06-18 223727](https://github.com/user-attachments/assets/0b2af9c0-4085-4e29-9855-ce2a926619c3)
+![Captura de pantalla 2025-06-18 223707](https://github.com/user-attachments/assets/6bfb7381-02de-429b-b977-90372dc8b22a)
 
-*(Agrega aquí una imagen de las pruebas en verde desde tu IDE o GitHub Actions)*
+---
+
+## 🙋‍♂️ Preguntas Finales – Respuestas
+¿Qué te ayudaron a identificar las pruebas unitarias?
+Ayudaron a verificar que la lógica de cálculo funcione correctamente en distintos escenarios (con/sin descuento, envío normal/express).
+
+¿Cuál fue el beneficio de usar un mock para simular una dependencia?
+Permitió aislar la lógica del servicio sin depender de una base de datos real, facilitando el control del entorno y pruebas más predecibles.
+
+¿Qué pasaría si se modifica la lógica de descuentos sin actualizar las pruebas?
+Las pruebas podrían fallar, lo que serviría como alerta para revisar el impacto del cambio en el comportamiento esperado.
+
+¿Cómo escalamos esta estrategia para un sistema más grande?
+Organizando los tests en carpetas por módulo, automatizando su ejecución en CI/CD, usando mocks para dependencias complejas, y aplicando buenas prácticas de mantenimiento de tests.
 
 ---
 

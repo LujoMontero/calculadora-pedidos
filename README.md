@@ -101,6 +101,14 @@ Las pruebas podrían fallar, lo que serviría como alerta para revisar el impact
 Organizando los tests en carpetas por módulo, automatizando su ejecución en CI/CD, usando mocks para dependencias complejas, y aplicando buenas prácticas de mantenimiento de tests.
 
 ---
+## 📝 Reflexión:
+Durante este ejercicio práctico aprendimos a implementar pruebas unitarias utilizando JUnit 5 y Mockito en un caso realista de lógica de negocio. Pudimos validar escenarios de cálculo de pedidos aplicando descuentos y costos de envío, y simular una dependencia externa con un mock para mantener el aislamiento.
+
+Además, automatizamos el proceso de testing mediante un pipeline de integración continua con GitHub Actions, lo cual refuerza nuestra confianza en el código y acelera los ciclos de entrega.
+
+Este ejercicio nos permitió comprender la importancia de validar cada unidad de forma aislada, integrar buenas prácticas de testing y preparar un proyecto escalable en entornos DevOps.
+
+---
 
 ## 🚀 Cómo ejecutar el proyecto
 

@@ -1,4 +1,3 @@
-[calculadora-pedidos-README.md](https://github.com/user-attachments/files/27138445/calculadora-pedidos-README.md)
 <div align="center">
 
 # 📦 Calculadora de Pedidos

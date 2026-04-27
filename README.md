@@ -1,40 +1,84 @@
-# 📦 calculadora-pedidos
+[calculadora-pedidos-README.md](https://github.com/user-attachments/files/27138445/calculadora-pedidos-README.md)
+<div align="center">
 
-Este proyecto simula una calculadora de pedidos que aplica descuentos y calcula costos de envío. Fue desarrollado como parte de un ejercicio práctico para implementar **pruebas unitarias en Java** utilizando **JUnit 5** y **Mockito**, e integrar las pruebas dentro de un flujo de **CI/CD con GitHub Actions**.
+# 📦 Calculadora de Pedidos
 
----
+### Pruebas unitarias con JUnit 5 + Mockito · CI/CD con GitHub Actions
 
-## 🧪 Tecnologías utilizadas
+![Java](https://img.shields.io/badge/Java_17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
+![JUnit](https://img.shields.io/badge/JUnit_5-25A162?style=for-the-badge&logo=junit5&logoColor=white)
+![Mockito](https://img.shields.io/badge/Mockito-78C257?style=for-the-badge&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 
-- Java 17  
-- Maven  
-- JUnit 5  
-- Mockito  
-- GitHub Actions  
+[![Tests](https://github.com/LujoMontero/calculadora-pedidos/actions/workflows/test.yml/badge.svg)](https://github.com/LujoMontero/calculadora-pedidos/actions)
 
----
-
-## 📌 Funcionalidad principal
-
-La clase `PedidoService` calcula el total a pagar por un pedido considerando:
-
-- Subtotal del pedido
-- Código de descuento (opcional)
-- Tipo de envío (`express` o `normal`)
-
-Se simula un acceso a base de datos de descuentos mediante una clase `DescuentoRepository`.
+</div>
 
 ---
 
-## ✅ Pruebas unitarias
+## 📌 ¿Qué hace este proyecto?
 
-Se implementaron pruebas para cubrir varios escenarios, incluyendo:
+Simulador de cálculo de pedidos con lógica de descuentos y costos de envío. El foco está en demostrar buenas prácticas de **testing en Java**: pruebas unitarias aisladas con mocks, cobertura de múltiples escenarios y automatización CI/CD.
 
-- Pedido sin descuento y envío normal
-- Pedido con descuento y envío express
-- Pedido con y sin mocks para aislar dependencias
+```
+Subtotal → aplicar descuento (opcional) → agregar costo envío → Total final
+```
 
-Ejemplo de prueba:
+---
+
+## 🏗️ Arquitectura
+
+```
+calculadora-pedidos/
+├── src/
+│   ├── main/java/
+│   │   ├── PedidoService.java        # Lógica principal de negocio
+│   │   └── DescuentoRepository.java  # Repositorio de descuentos
+│   └── test/java/
+│       └── PedidoServiceTest.java    # Suite de pruebas unitarias
+├── .github/workflows/
+│   └── test.yml                      # Pipeline CI/CD
+└── pom.xml
+```
+
+---
+
+## ⚙️ Requisitos
+
+- Java 17+
+- Maven 3.8+
+
+---
+
+## 🚀 Instalación y ejecución
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/LujoMontero/calculadora-pedidos.git
+cd calculadora-pedidos
+
+# 2. Ejecutar pruebas
+mvn test
+
+# 3. Compilar el proyecto
+mvn clean install
+```
+
+---
+
+## 🧪 Pruebas implementadas
+
+Las pruebas cubren los escenarios principales de negocio usando **JUnit 5** y **Mockito** para aislar dependencias:
+
+| Escenario | Tipo | Estado |
+|---|---|---|
+| Pedido sin descuento + envío normal | Unitaria | ✅ |
+| Pedido con descuento + envío express | Unitaria | ✅ |
+| Descuento simulado con Mock | Unitaria con Mock | ✅ |
+| Código de descuento inválido | Caso borde | ✅ |
+
+**Ejemplo de prueba con Mock:**
 
 ```java
 @Test
@@ -43,17 +87,17 @@ void testConMockDeDescuento() {
     when(mockRepo.obtenerPorcentaje("PROMO10")).thenReturn(0.10);
 
     PedidoService service = new PedidoService(mockRepo);
-
     double total = service.calcularTotal(100, "PROMO10", true);
-    assertEquals(110.0, total); // 100 - 10% + 20
+
+    assertEquals(110.0, total); // 100 - 10% descuento + $20 envío express
 }
 ```
 
 ---
 
-## ⚙️ CI/CD con GitHub Actions
+## 🔁 Pipeline CI/CD
 
-Este repositorio incluye un archivo de workflow (`.github/workflows/test.yml`) que ejecuta automáticamente los tests cuando haces `push` o abres un `pull request`.
+Cada `push` o `pull request` a `main` ejecuta automáticamente las pruebas:
 
 ```yaml
 on: [push, pull_request]
@@ -68,57 +112,19 @@ jobs:
       - run: mvn test
 ```
 
-📍 Puedes ver los resultados aquí:  
-👉 [Acciones del proyecto](https://github.com/LujoMontero/calculadora-pedidos/actions)
+👉 [Ver resultados en Actions](https://github.com/LujoMontero/calculadora-pedidos/actions)
 
 ---
 
-## 🧠 Aprendizajes
+## 💡 Conceptos aplicados
 
-> En este proyecto aprendí a aplicar pruebas unitarias efectivas en Java, simular dependencias externas con Mockito, y automatizar el proceso de testing como parte de un flujo CI/CD. Esto refuerza la calidad del código y mejora la seguridad en los despliegues.
-
----
-
-## 📸 Captura de pruebas exitosas
-![Captura de pantalla 2025-06-18 223832](https://github.com/user-attachments/assets/f33831d0-4161-4894-99e1-041ef8f89190)
-![Captura de pantalla 2025-06-18 223801](https://github.com/user-attachments/assets/8fc35fd7-00be-444d-b56c-fd43bf0f285e)
-![Captura de pantalla 2025-06-18 223727](https://github.com/user-attachments/assets/0b2af9c0-4085-4e29-9855-ce2a926619c3)
-![Captura de pantalla 2025-06-18 223707](https://github.com/user-attachments/assets/6bfb7381-02de-429b-b977-90372dc8b22a)
+- **Pruebas unitarias**: Validación de lógica de negocio de forma aislada
+- **Mockito**: Simulación de dependencias externas (repositorio de descuentos) sin necesidad de base de datos real
+- **Integración continua**: Pipeline automatizado que detecta regresiones antes del merge
+- **Maven**: Gestión de dependencias y ciclo de vida del proyecto
 
 ---
 
-## 🙋‍♂️ Preguntas Finales – Respuestas
-¿Qué te ayudaron a identificar las pruebas unitarias?
-Ayudaron a verificar que la lógica de cálculo funcione correctamente en distintos escenarios (con/sin descuento, envío normal/express).
+## 👨‍💻 Autor
 
-¿Cuál fue el beneficio de usar un mock para simular una dependencia?
-Permitió aislar la lógica del servicio sin depender de una base de datos real, facilitando el control del entorno y pruebas más predecibles.
-
-¿Qué pasaría si se modifica la lógica de descuentos sin actualizar las pruebas?
-Las pruebas podrían fallar, lo que serviría como alerta para revisar el impacto del cambio en el comportamiento esperado.
-
-¿Cómo escalamos esta estrategia para un sistema más grande?
-Organizando los tests en carpetas por módulo, automatizando su ejecución en CI/CD, usando mocks para dependencias complejas, y aplicando buenas prácticas de mantenimiento de tests.
-
----
-## 📝 Reflexión:
-Durante este ejercicio práctico aprendimos a implementar pruebas unitarias utilizando JUnit 5 y Mockito en un caso realista de lógica de negocio. Pudimos validar escenarios de cálculo de pedidos aplicando descuentos y costos de envío, y simular una dependencia externa con un mock para mantener el aislamiento.
-
-Además, automatizamos el proceso de testing mediante un pipeline de integración continua con GitHub Actions, lo cual refuerza nuestra confianza en el código y acelera los ciclos de entrega.
-
-Este ejercicio nos permitió comprender la importancia de validar cada unidad de forma aislada, integrar buenas prácticas de testing y preparar un proyecto escalable en entornos DevOps.
-
----
-
-## 🚀 Cómo ejecutar el proyecto
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/LujoMontero/calculadora-pedidos.git
-
-# Ingresar al proyecto
-cd calculadora-pedidos
-
-# Ejecutar pruebas
-mvn test
-```
+**Luis Montero** · [GitHub](https://github.com/LujoMontero) · [LinkedIn](https://www.linkedin.com/in/luis-montero-if/)
